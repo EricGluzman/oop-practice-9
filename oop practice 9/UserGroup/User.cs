@@ -54,8 +54,11 @@ namespace oop_practice_9.UserGroup
         public void ChangeJob(Employment job) // for claude. is it better to create a new instance of 'job' ? or just leave it CurrentJob = job; ?
         {
             if (job == null) throw new ArgumentNullException(nameof(job), "Cannot work with null job.");
-            CurrentJob.EndJob(false);
-            _pastJobs.Add(CurrentJob);
+            if (CurrentJob != null)
+            {
+                CurrentJob.EndJob(false);
+                _pastJobs.Add(CurrentJob);
+            }
             CurrentJob = job;
             AddLog(ActionType.ChangedJob, "ChangedJob");
         }
