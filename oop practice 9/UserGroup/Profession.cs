@@ -1,4 +1,4 @@
-﻿namespace oop_practice_9.UserGroup
+﻿namespace oop_practice_9.UserGroup  
 {
     
         public enum Profession

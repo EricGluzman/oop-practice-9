@@ -28,7 +28,7 @@ namespace oop_practice_9.UserGroup
                 IsCurrent = true;
             }
 
-            public void IfIsCurrent(bool b)
+            public void EndJob(bool b)
             {
                 if (!b && IsCurrent)
                 {

@@ -7,7 +7,7 @@ namespace oop_practice_9.UserGroup
     {
         #region Properties
         private CreditCard _creditcard;
-        private List<User> _connections;
+        private List<User> _connections = new();
         private List<Employment> _pastJobs = new();
         private List<Post> _pastposts = new();
         private List<UserAction> _activityLog = new();
@@ -54,6 +54,7 @@ namespace oop_practice_9.UserGroup
         public void ChangeJob(Employment job) // for claude. is it better to create a new instance of 'job' ? or just leave it CurrentJob = job; ?
         {
             if (job == null) throw new ArgumentNullException(nameof(job), "Cannot work with null job.");
+            CurrentJob.EndJob(false);
             _pastJobs.Add(CurrentJob);
             CurrentJob = job;
             AddLog(ActionType.ChangedJob, "ChangedJob");
@@ -112,12 +113,12 @@ namespace oop_practice_9.UserGroup
         }
         public override bool Equals(object? obj)
         {
-            if (obj is not User other) throw new ArgumentException("Cannot Equal non user.");
-            return UserName == other.UserName && ID == other.ID && Email == other.Email && IsPremium == other.IsPremium;
+            if (obj is not User other) return false;
+            return UserName == other.UserName && ID == other.ID && Email == other.Email;
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(UserName, ID, Email, IsPremium );
+            return HashCode.Combine(UserName, ID, Email);
         }
     }
 }
